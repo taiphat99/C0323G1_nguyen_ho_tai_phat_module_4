@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    </style>
+</head>
+<body style="margin: 50px 100px">
+<h1>Create Form</h1>
+<form th:action="@{/product/save}" th:object="${product}" method="post">
+    <table>
+        <tr>
+            <td>ID</td>
+            <td><input type="number" th:field="*{id}" required></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}" required></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input type="number" th:field="*{price}" required></td>
+        </tr>
+        <tr>
+            <td>Quantity</td>
+            <td><input type="number" th:field="*{quantity}" required></td>
+        </tr>
+        <tr>
+            <td>Brand</td>
+            <td>
+                <select name="brand" id="" th:field="*{brand}" required>
+                    <option value="">-- Select a brand --</option>
+                    <option th:each="item: ${brands}" th:value="${item}" th:text="${item}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Water Resistance</td>
+            <td>
+                <input type="checkbox" th:field="*{waterResistance}">
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Detail</td>
+            <td><textarea th:field="*{detail}" name="detail" cols="40" rows="10"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" value="Save">Save</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

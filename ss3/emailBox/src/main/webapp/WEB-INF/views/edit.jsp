@@ -36,16 +36,16 @@
             <td><b>Spam Filter </b></td>
             <td>
                 <form:checkbox path="spamFilter" id="spamFilter"/>
-                <form:label for="spamFilter" path="spamFilter" >Enable spams filter</form:label>
+                <form:label for="spamFilter" path="spamFilter">Enable spams filter</form:label>
             </td>
         </tr>
         <tr>
             <td><b>Signature</b></td>
-            <td><form:textarea path="signature"  cols="30" rows="5"/></td>
+            <td><form:textarea path="signature" cols="30" rows="5"/></td>
         </tr>
         <tr>
             <td>
-                <form:button type="submit" >Update</form:button>
+                <form:button type="submit">Update</form:button>
             </td>
             <td>
                 <button>Cancel</button>

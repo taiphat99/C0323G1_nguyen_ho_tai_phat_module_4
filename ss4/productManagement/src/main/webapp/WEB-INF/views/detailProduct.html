@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Product</title>
+</head>
+<body>
+<div style="margin: 50px 100px">
+  <h1>Product Edition</h1>
+    <table>
+      <tr>
+        <td>ID</td>
+        <td th:text="${product.id}"></td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td th:text="${product.name}"></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td th:text="${product.price}"></td>
+      </tr>
+      <tr>
+        <td>Quantity</td>
+        <td th:text="${product.quantity}"></td>
+      </tr>
+      <tr>
+        <td>Brand</td>
+        <td th:text="${product.brand}"></td>
+
+      </tr>
+      <tr>
+        <td>Water Resistance</td>
+        <td>
+          <div style="text-align: center" th:if="${product.isWaterResistance()}"><i
+                  class="fa-solid fa-circle-check "></i></div>
+          <div style="text-align: center" th:unless="${product.isWaterResistance()}"><i
+                  class="fa-solid fa-rectangle-xmark"></i></div>
+        </td>
+      </tr>
+      <tr>
+        <td>Detail</td>
+        <td th:text="${product.detail}"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><a th:href="@{/product}">Back to Home</a></td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+</body>
+</html>
