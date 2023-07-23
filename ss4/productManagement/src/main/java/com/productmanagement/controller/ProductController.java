@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,16 +32,14 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public String save(Product product, Model model) {
+    public String save(Product product, RedirectAttributes redirectAttributes) {
         productService.add(product);
-        model.addAttribute("msg", "Add successfully!");
-        List<Product> productList = productService.getAll();
-        model.addAttribute("productList",productList);
-        return "list";
+        redirectAttributes.addFlashAttribute("msg", "Add successfully!");
+        return "redirect:/product";
     }
 
     @PostMapping("/delete")
-    public String delete(@ModelAttribute ("id") Integer id,Model model){
+    public String delete(@RequestParam ("id") int id,Model model){
         productService.delete(id);
         model.addAttribute("productList",productService.getAll());
         return "list";
@@ -53,12 +52,10 @@ public class ProductController {
     }
 
     @PostMapping("/update")
-    public String update(Product product,Model model){
+    public String update(Product product, RedirectAttributes redirectAttributes){
         productService.update(product);
-        model.addAttribute("msg","Edit successfully!");
-        List<Product> productList = productService.getAll();
-        model.addAttribute("productList",productList);
-        return "list";
+        redirectAttributes.addFlashAttribute("msg","Edit successfully!");
+        return "redirect:/product";
     }
 
     @GetMapping("/detail/{id}")
