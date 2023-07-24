@@ -1,9 +1,8 @@
-package com.productmanagement.repository;
+package com.product_management.repository;
 
-import com.productmanagement.model.Product;
+import com.product_management.model.Product;
 
 import java.util.List;
-import java.util.Map;
 
 public interface IProductRepository {
     List<Product> getAll();

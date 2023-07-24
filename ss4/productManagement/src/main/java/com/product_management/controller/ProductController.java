@@ -1,7 +1,7 @@
-package com.productmanagement.controller;
+package com.product_management.controller;
 
-import com.productmanagement.model.Product;
-import com.productmanagement.service.IProductService;
+import com.product_management.model.Product;
+import com.product_management.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,10 +39,10 @@ public class ProductController {
     }
 
     @PostMapping("/delete")
-    public String delete(@RequestParam ("id") int id,Model model){
+    public String delete(@RequestParam ("id") int id,RedirectAttributes redirectAttributes){
         productService.delete(id);
-        model.addAttribute("productList",productService.getAll());
-        return "list";
+        redirectAttributes.addFlashAttribute("msg","Delete successfully!");
+        return "redirect:/product";
     }
 
     @GetMapping("/edit/{id}")

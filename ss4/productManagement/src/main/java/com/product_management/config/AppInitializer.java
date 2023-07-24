@@ -1,4 +1,4 @@
-package com.productmanagement.config;
+package com.product_management.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

@@ -1,7 +1,7 @@
-package com.productmanagement.service;
+package com.product_management.service;
 
-import com.productmanagement.model.Product;
-import com.productmanagement.repository.IProductRepository;
+import com.product_management.model.Product;
+import com.product_management.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -11,7 +11,6 @@ import java.util.List;
 public class ProductService implements IProductService {
     @Autowired
     private IProductRepository productRepository;
-
 
     @Override
     public List<Product> getAll() {
