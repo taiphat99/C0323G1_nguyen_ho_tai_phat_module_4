@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class EmailBoxController {
     @Autowired
-    IEmailService emailService;
+    private IEmailService emailService;
     @ModelAttribute("languages")
     public String[] getLanguage(){
         return new String[]{"English","Japanese","Chinese","Vietnamese"};
