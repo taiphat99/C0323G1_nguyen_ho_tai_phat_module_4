@@ -1,5 +1,6 @@
 package com.blog.model;
 
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -15,14 +16,11 @@ public class Blog {
     @Column(nullable = false)
     private String author;
 
-    @Column(nullable = false)
     private Date createdDate;
 
-    @Column(nullable = false)
     private Date updatedDate;
 
-
-    @Column(nullable = false,columnDefinition = "text")
+    @Column(nullable = false, columnDefinition = "text")
     private String image;
 
     @ManyToOne

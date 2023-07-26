@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="margin: 50px 100px">
+<h1>Create Form</h1>
+<form th:action="@{/save}" th:object="${blog}" method="post">
+    <table>
+        <tr>
+            <td>Title</td>
+            <td><input type="text" th:field="*{title}" required></td>
+        </tr>
+        <tr>
+            <td>Author</td>
+            <td><input type="text" th:field="*{author}" required></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>
+                <select name="brand" id="" th:field="*{category}" required>
+                    <option value="">-- Select a brand --</option>
+                    <option th:each="item: ${categories}" th:value="${item.id}" th:text="${item.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Image Link</td>
+            <td><textarea name="image" th:field="*{image}" cols="30" rows="10" required></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" value="Save">Save</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
