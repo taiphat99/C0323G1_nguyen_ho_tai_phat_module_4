@@ -1,26 +1,25 @@
-package com.blog.model;
+package com.song.model;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Category {
+public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Blog> blogSet;
+    @OneToMany(mappedBy = "genre")
+    private Set<Song> songSet;
 
-    public Category() {
-    }
-
-    public Category(Integer id, String name, Set<Blog> blogSet) {
+    public Genre(Integer id, String name, Set<Song> songSet) {
         this.id = id;
         this.name = name;
-        this.blogSet = blogSet;
+        this.songSet = songSet;
+    }
+
+    public Genre() {
     }
 
     public Integer getId() {
@@ -30,6 +29,7 @@ public class Category {
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -38,11 +38,11 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Blog> getBlogSet() {
-        return blogSet;
+    public Set<Song> getSongSet() {
+        return songSet;
     }
 
-    public void setBlogSet(Set<Blog> blogSet) {
-        this.blogSet = blogSet;
+    public void setSongSet(Set<Song> songSet) {
+        this.songSet = songSet;
     }
 }

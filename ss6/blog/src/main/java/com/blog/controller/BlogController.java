@@ -27,15 +27,15 @@ public class BlogController {
     @Autowired
     private ICategoryService categoryService;
 
-    @GetMapping(value = "/list")
-    public ModelAndView getAll(@PageableDefault(value = 0, size = 6, sort = "id") Pageable pageable,
-                               @RequestParam(defaultValue = "") String searchName) {
-        ModelAndView mav = new ModelAndView("home");
-        Page<Blog> blogPage = blogService.findAll(pageable, searchName);
-        mav.addObject("blogPage", blogPage);
-        mav.addObject("searchName", searchName);
-        return mav;
-    }
+    //    @GetMapping(value = "/list")
+    //    public ModelAndView getAll(@PageableDefault(value = 0, size = 6, sort = "id") Pageable pageable,
+    //                               @RequestParam(defaultValue = "") String searchName) {
+    //        ModelAndView mav = new ModelAndView("home");
+    //        Page<Blog> blogPage = blogService.findAll(pageable, searchName);
+    //        mav.addObject("blogPage", blogPage);
+    //        mav.addObject("searchName", searchName);
+    //        return mav;
+    //    }
 
     @GetMapping("/add")
     public String showCreateForm(Model model) {
@@ -53,14 +53,13 @@ public class BlogController {
         return "redirect:/list";
     }
 
-    @GetMapping("/searchByName")
+    @GetMapping("/list")
     public ModelAndView searchByName(@PageableDefault(value = 0, size = 6, sort = "id") Pageable pageable,
-                                     @RequestParam("searchName") String searchName) {
+                                     @RequestParam(defaultValue = "") String searchName) {
         ModelAndView mav = new ModelAndView("/home");
         Page<Blog> blogPage = blogService.findAll(pageable, searchName);
         mav.addObject("blogPage",blogPage);
         mav.addObject("searchName",searchName);
-        mav.addObject("msg",blogPage.getTotalElements() + " records was founded");
         return mav;
     }
 

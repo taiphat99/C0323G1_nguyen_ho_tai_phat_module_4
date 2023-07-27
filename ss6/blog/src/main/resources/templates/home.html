@@ -10,7 +10,7 @@
 <div class="container">
     <h1 style="text-align: center">Blog Management</h1>
     <div style="margin: 20px 20px">
-        <form th:action="@{/searchByName}">
+        <form th:action="@{/list}">
         <a class="btn btn-outline-primary" th:href="@{/add}">Add New Product</a>
         <input name="searchName" th:value="${searchName}" type="text" style="width:200px;margin-left: 100px">
         <button class="btn btn-outline-primary">Search</button>

@@ -1,26 +1,24 @@
-package com.blog.model;
+package com.user.model;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Category {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
     private String name;
+    @OneToMany(mappedBy = "role")
+    private Set<User> userSet;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Blog> blogSet;
-
-    public Category() {
+    public Role() {
     }
 
-    public Category(Integer id, String name, Set<Blog> blogSet) {
+    public Role(Integer id, String name, Set<User> userSet) {
         this.id = id;
         this.name = name;
-        this.blogSet = blogSet;
+        this.userSet = userSet;
     }
 
     public Integer getId() {
@@ -30,6 +28,7 @@ public class Category {
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -38,11 +37,11 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Blog> getBlogSet() {
-        return blogSet;
+    public Set<User> getUserSet() {
+        return userSet;
     }
 
-    public void setBlogSet(Set<Blog> blogSet) {
-        this.blogSet = blogSet;
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
     }
 }
