@@ -17,7 +17,6 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-
     @OneToMany(mappedBy = "product")
     private Set<OrderDetail> orderDetailSet;
 
@@ -32,11 +31,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer id, String name, double price, Category category) {
+    public Product(Integer id, String name, double price, Category category, Set<OrderDetail> orderDetailSet) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
+        this.orderDetailSet = orderDetailSet;
     }
 
     public Integer getId() {

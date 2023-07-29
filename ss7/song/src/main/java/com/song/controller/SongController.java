@@ -39,10 +39,16 @@ public class SongController {
     @PostMapping("/save")
     public String save(@Valid @ModelAttribute SongDTO songDTO,BindingResult bindingResult,
                        RedirectAttributes redirectAttributes, Model model){
+        System.out.println(songDTO.getGenre());
         new SongDTO().validate(songDTO,bindingResult);
+
         if(bindingResult.hasErrors()){
+//           redirectAttributes.addFlashAttribute("songDTO",songDTO);
+//            return "redirect:/song/add";
+            List<Genre> genres = genreService.findAll();
+            model.addAttribute("genres",genres);
             model.addAttribute("songDTO",songDTO);
-            return "create-form";
+            return "/create-form";
         }
         Song song = new Song();
         BeanUtils.copyProperties(songDTO,song);
@@ -52,7 +58,7 @@ public class SongController {
     }
     @GetMapping("/add")
     public String showFormCreate(Model model){
-        model.addAttribute("song",new Song());
+        model.addAttribute("songDTO",new SongDTO());
         List<Genre> genres = genreService.findAll();
         model.addAttribute("genres",genres);
         return "/create-form";

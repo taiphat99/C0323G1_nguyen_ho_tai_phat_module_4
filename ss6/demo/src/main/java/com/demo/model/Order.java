@@ -6,22 +6,21 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "order_table")
+@Table(name = "order_info")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+
     private Integer id;
 
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
+
     private String email;
-    @Column(nullable = false)
+
     private String phone;
-    @Column(nullable = false)
+
     private String address;
-    @Column(nullable = false)
+
     private String note;
 
     @OneToMany(mappedBy = "order")
@@ -38,13 +37,14 @@ public class Order {
     public Order() {
     }
 
-    public Order(Integer id, String name, String email, String phone, String address, String note) {
+    public Order(Integer id, String name, String email, String phone, String address, String note, Set<OrderDetail> orderDetailSet) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.note = note;
+        this.orderDetailSet = orderDetailSet;
     }
 
     public Integer getId() {

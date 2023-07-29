@@ -1,20 +1,31 @@
 package com.song.dto;
 
-
+import com.song.model.Genre;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.NotNull;
 
 public class SongDTO implements Validator {
     private Integer id;
     private String name;
     private String composer;
-//  private GenreDTO genreDTO;
+    @NotNull(message = "Cannot be empty!")
+    private Genre genre;
 
-    public SongDTO(Integer id, String name, String composer) {
+    public SongDTO(Integer id, String name, String composer, Genre genre) {
         this.id = id;
         this.name = name;
         this.composer = composer;
+        this.genre = genre;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     public SongDTO() {
@@ -60,11 +71,10 @@ public class SongDTO implements Validator {
         }
 //        Composer Regex
         if (songDTO.getComposer().equals("")) {
-            errors.rejectValue("name", null, "Can't be Empty!");
+            errors.rejectValue("composer", null, "Can't be Empty!");
         } else if (!songDTO.getComposer().matches("^(?!.*\\s{2})[A-Z][a-z]*(\\s[A-Z][a-z]*){0,}[^\\s@;,.=+\\-]{0,300}$")) {
-            errors.rejectValue("name", null, "Invalid Composer!");
+            errors.rejectValue("composer", null, "Invalid Composer!");
         }
-
     }
 
 }

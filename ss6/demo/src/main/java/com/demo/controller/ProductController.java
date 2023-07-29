@@ -19,10 +19,14 @@ public class ProductController {
 
     @GetMapping("")
     public ModelAndView showList() {
-        ModelAndView mav = new ModelAndView("list");
-        List<Product> productList = productService.findAll();
-        mav.addObject("productList", productList);
+        ModelAndView mav = new ModelAndView("index");
+//        List<Product> productList = productService.findAll();
+//        mav.addObject("productList", productList);
         return mav;
+    }
+    @GetMapping("/go-shopping")
+    public String shopping(){
+        return "shop";
     }
 
     @GetMapping("/add")

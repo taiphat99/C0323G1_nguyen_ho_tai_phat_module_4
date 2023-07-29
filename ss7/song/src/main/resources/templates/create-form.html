@@ -12,17 +12,17 @@
         <h1>Add a New Song</h1>
     </div>
     <div>
-        <form th:action="@{/song/save}" th:object="${song}" method="post">
-            <table>
+        <form th:action="@{/song/save}" th:object="${songDTO}" method="post">
+            <table border="1" style="border-collapse: collapse">
                 <tr>
                     <td>Song Name:</td>
                     <td><input type="text" th:field="*{name}"></td>
-                    <td><small style="color: red">invalid!</small></td>
+                    <td><span style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></td>
                 </tr>
                 <tr>
                     <td>Composer</td>
                     <td><input type="text" th:field="*{composer}"></td>
-                    <td><small style="color: red">invalid!</small></td>
+                    <td><span style="color: red" th:if="${#fields.hasErrors('composer')}" th:errors="*{composer}"></span></td>
                 </tr>
                 <tr>
                     <td>Genre</td>
@@ -32,6 +32,12 @@
                             <option th:each="genre:${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
                         </select>
                     </td>
+                    <td><span style="color: red" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit">Save</button></td>
+                    <td></td>
                 </tr>
             </table>
         </form>
