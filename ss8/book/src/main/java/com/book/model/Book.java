@@ -11,24 +11,23 @@ public class Book {
     private String name;
     private int quantity;
     private String author;
-
     private String image;
     @OneToMany(mappedBy = "book")
-    private Set<Code> codeSet;
+    private Set<Ticket> ticketSet;
     public Book() {
     }
 
+    public Book(Integer id, String name, int quantity, String author, String image, Set<Ticket> ticketSet) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.author = author;
+        this.image = image;
+        this.ticketSet = ticketSet;
+    }
 
     public Integer getId() {
         return id;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public void setId(Integer id) {
@@ -51,11 +50,27 @@ public class Book {
         this.quantity = quantity;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Set<Ticket> getCodeSet() {
+        return ticketSet;
+    }
+
+    public void setCodeSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
     }
 }

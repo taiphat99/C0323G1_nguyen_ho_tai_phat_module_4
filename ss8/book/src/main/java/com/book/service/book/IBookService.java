@@ -1,4 +1,4 @@
-package com.book.service;
+package com.book.service.book;
 
 import com.book.model.Book;
 
