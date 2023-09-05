@@ -237,13 +237,13 @@
                             <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center"
                                    th:value="${product.getValue()}">
                             <div class="input-group-btn">
-                                <button id="plusButton" th:attr="onclick=|plus(${product.key.price},${product.getValue()})|" class="btn btn-sm btn-primary btn-plus">
+                                <button id="plusButton" th:attr="onclick=|plus(${product.key.price},${product.getValue()},${product.key.id})|" class="btn btn-sm btn-primary btn-plus">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                     </td>
-                    <td class="align-middle" ><p id="totalMoney"></p></td>
+                    <td class="align-middle" ><p th:id="${product.key.id}"></p></td>
                     <td class="align-middle">
                         <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
                     </td>
@@ -369,11 +369,11 @@
 
 <script>
     let quantity = 1;
-    function minus(price,vietQuantity) {
+    function minus(price,vietQuantity,id) {
         debugger;
         if (quantity > 1) {
             quantity--;
-            document.getElementById("totalMoney").innerText = price * quantity;
+            document.getElementById(id).innerText = price * quantity;
             document.querySelector('#minusButton').disabled = false;
             if(quantity === 1){
                 document.querySelector('#minusButton').disabled = true;
@@ -383,9 +383,9 @@
         }
     }
 
-    function plus(price,vietQuantity) {
+    function plus(price,vietQuantity,id) {
         quantity++;
-        document.getElementById("totalMoney").innerText = price * quantity;
+        document.getElementById(id).innerText = price * quantity;
         document.querySelector('#minusButton').disabled = false;
     }
 </script>

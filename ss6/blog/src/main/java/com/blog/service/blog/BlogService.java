@@ -7,17 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class BlogService implements IBlogService {
     @Autowired
     IBlogRepository blogRepository;
 
-
     @Override
     public Page<Blog> findAll(Pageable pageable, String searchName) {
-        return blogRepository.findBlogByTitleContaining(pageable,searchName);
+        return blogRepository.findBlogByTitleContaining(pageable, searchName);
     }
 
     @Override
@@ -26,6 +23,7 @@ public class BlogService implements IBlogService {
     }
 
     @Override
+
     public void save(Blog blog) {
         blogRepository.save(blog);
     }

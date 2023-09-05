@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .err{
+            color: red;
+        }
+        input{
+            margin: 20px 30px;
+            width: 240px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body class="container">
+<h1>Create Form</h1>
+<form method="post" th:action="@{/save}" th:object="${productDto}">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input name="name" type="text" th:field="*{name}"></td>
+            <td class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input name="price" type="number" th:field="*{price}"></td>
+            <td class="err" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Quantity</td>
+            <td><input name="quantity" type="number" th:field="*{quantity}"></td>
+            <td class="err" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>
+                <select th:field="*{category}" name="category" class="form-select" id="" style="margin: 20px 30px">
+                    <option th:each="category: ${categoryList}"  th:value="${category.id}" th:text="${category.name}"></option>
+                </select>
+            </td>
+            <td class="err" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></td>
+
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button  style="margin: 20px 30px;padding: 7px 11px" type="submit" class="btn-outline-primary">Save</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

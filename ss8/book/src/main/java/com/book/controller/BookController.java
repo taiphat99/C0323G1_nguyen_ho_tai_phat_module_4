@@ -32,6 +32,7 @@ public class BookController {
         List<String> list = IOFile.readFile("/main/java/com/book/data/numberOfAccess.csv");
 //        int count = Integer.parseInt(IOFile.readFile("/src/main/java/com/book/data/numberOfAccess.csv").get(0));
 //        model.addAttribute("numberOfAccess",count);
+
         return "list";
     }
 

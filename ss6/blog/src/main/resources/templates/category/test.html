@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <style>
+        /* Dropdown Button */
+        .dropbtn {
+            padding: 16px;
+            cursor: pointer;
+        }
+
+        /* Dropdown button on hover & focus */
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: #2980B9;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container 
+        when the user clicks on the dropdown button) */
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    
+<!-- Navbar Start -->
+<div class="container-fluid bg-dark mb-30" th:fragment="navbar-start">
+    <div class="row px-xl-5">
+        <div class="col-lg-3 d-none d-lg-block">
+            <a class="text-decoration-none" style="position: relative;top:8px">
+                <span class="h1 text-uppercase text-primary bg-dark px-2">Simple</span>
+                <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Man</span>
+            </a>
+        </div>
+        <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0" style="position: relative">
+                        <a class="nav-item nav-link active">Trang Chủ</a>
+                        <a class="nav-item nav-link">Sản Phẩm</a>
+                        <a class="nav-item nav-link">Ưu Đãi</a>
+                        <a  class="nav-item nav-link">Best Seller</a>
+                    </div>
+                    <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                        <a href="" class="btn px-0">
+                            <i class="fas fa-heart text-primary"></i>
+                            <span class="badge text-secondary border border-secondary rounded-circle"
+                                  style="padding-bottom: 2px;">0</span>
+                        </a>
+                        <a class="btn px-0 ml-3">
+                            <i class="fas fa-shopping-cart text-primary"></i>
+                            <span class="badge text-secondary border border-secondary rounded-circle"
+                                  style="padding-bottom: 2px;" ></span>
+                            <span class="badge text-secondary border border-secondary rounded-circle"
+                                  style="padding-bottom: 2px;" >0</span>
+                        </a>
+                        <a class="btn px-0 ml-3">
+                            <i class="fa-solid fa-user text-primary"></i>
+                        </a>
+                        <a class="btn px-0 ml-3">
+                            <i class="fa-solid fa-user text-primary"></i>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+    <div class="dropdown">
+        <i onclick="myFunction()" class="dropbtn fa-solid fa-user"></i>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+
+
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

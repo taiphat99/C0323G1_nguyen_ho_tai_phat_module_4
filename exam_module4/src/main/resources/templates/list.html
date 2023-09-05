@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 style="text-align: center" class="my-5">Product Management</h1>
+    <p style="color: red;margin: 40px 0" th:if="${msg!= null}" th:text="${msg}"></p>
+    <div style="margin: 20px 20px">
+        <form th:action="@{/list}" method="get">
+            <a class="btn btn-outline-primary" th:href="@{/showCreateForm}">Add New Product</a>
+            <select id="" name="categoryName" class="form-select" style="display: inline-block;width: 250px;margin-left: 490px" >
+                <option style="text-align: center" value="">--  Select a category  --</option>
+                <option style="text-align: center" th:each="category: ${categoryList}" th:value="${category.name}" th:text="${category.name}"></option>
+            </select>
+            <input name="searchName" th:value="${searchName}" type="text" style="width:200px;height: 38px" placeholder="Search By Name">
+            <button class="btn btn-outline-primary" style="margin-bottom: 4px">Search</button>
+        </form>
+    </div>
+<!--    msg-->
+    <div class="msg"   ></div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Category</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr  th:each="product,loop: ${productPage}" >
+            <th scope="row" th:text="${loop.count}"></th>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.quantity}"></td>
+            <td th:text="${product.category.name}"></td>
+            <td><a class="btn btn-outline-primary"   >View Detail</a></td>
+            <td><a class="btn btn-outline-warning"   >Edit</a></td>
+            <td><a class="btn btn-outline-danger" th:attr="onclick=|sendInfo(${product.id},'${product.name}')|"  data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+<!--    paging-->
+    <div class="d-flex justify-content-center">
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item ">
+                    <a class="page-link" th:if="${productPage.hasPrevious()}" th:href="@{/list(page=${productPage.number}-1,searchName=${searchName},categoryName=${categoryName})}"  >Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" th:text="${productPage.number}+1" ></a></li>
+                <li class="page-item"><span class="page-link">/</span></li>
+                <li class="page-item"><a class="page-link"  th:text="${productPage.totalPages}" ></a></li>
+                <li class="page-item">
+                    <a class="page-link" th:if="${productPage.hasNext()}" th:href="@{/list(page=${productPage.number}+1,searchName=${searchName},categoryName=${categoryName})}" >Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!--Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure to remove <b id="name"></b>?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="submitDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form id="deleteForm" th:action="@{/delete}" method="post">
+    <input type="hidden" name="id" id="deleteId">
+</form>
+
+<script src="/js/bootstrap.min.js"></script>
+<script>
+function sendInfo(id, name){
+    document.getElementById("name").innerText = name;
+    document.getElementById("deleteId").value = id;
+}
+function submitDelete(){
+    document.getElementById("deleteForm").submit();
+}
+</script>
+
+</body>
+</html>
